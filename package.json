@@ -1,0 +1,48 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "web": "expo start --web",
+    "start": "react-native start",
+    "test": "jest",
+    "postinstall": "cp node_modules/@expo/vector-icons/FontAwesome.js node_modules/@expo/vector-icons/Fontisto.js"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^10.0.6",
+    "@react-native-community/masked-view": "^0.1.7",
+    "@react-navigation/drawer": "^5.4.0",
+    "@react-navigation/native": "^5.1.4",
+    "@use-expo/font": "^1.0.1",
+    "expo": "~37.0.3",
+    "expo-font": "^8.1.0",
+    "expo-updates": "~0.1.0",
+    "native-base": "^2.13.8",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "~0.61.4",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-open-maps": "^0.3.5",
+    "react-native-reanimated": "^1.7.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-unimodules": "~0.9.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-web": "~0.11.7"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.8.6",
+    "@types/react": "~16.9.23",
+    "@types/react-native": "~0.61.17",
+    "babel-preset-expo": "~8.1.0",
+    "jest-expo": "~37.0.0",
+    "typescript": "~3.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "private": true,
+  "alias": {
+    "#root": "./"
+  }
+}

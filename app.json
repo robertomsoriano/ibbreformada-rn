@@ -1,0 +1,20 @@
+{
+  "name": "ibbr",
+  "displayName": "ibbr",
+  "expo": {
+    "name": "ibbr",
+    "slug": "ibbr",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "splash": {
+      "image": "./assets/images/load.png"
+    }
+  }
+}
