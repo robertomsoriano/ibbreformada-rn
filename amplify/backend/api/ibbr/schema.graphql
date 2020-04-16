@@ -1,0 +1,14 @@
+type Todo @model {
+  id: ID!
+  title: String!
+  description: String
+  category: [String!]
+}
+
+type Prayer @model {
+  id: ID!
+  name: String!
+  phone: String
+  email: String
+  content: String!
+}

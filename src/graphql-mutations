@@ -1,0 +1,6 @@
+mutation createTodo{
+  createTodo(input:{title: "Gracias Por Tu Palabra", description: "Gracias por Tu santa Palabra.", category: ["Acciones de gracias"]}){
+    title
+    description
+  }
+}

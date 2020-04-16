@@ -12,7 +12,37 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import Peticiones from "./screens/Peticiones";
 import PeticionesForm from "./screens/PeticionesForm";
-import { PETICION_FORM, HOME, PETICIONES } from "./constants";
+import {
+  PETICION_FORM,
+  HOME,
+  PETICIONES,
+  LOGIN,
+  SIGNUP,
+  SINGLEPET,
+  PRAYERS
+} from "./constants";
+import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
+import SinglePet from "./screens/SinglePet";
+import Prayers from "./screens/Prayers";
+
+// // AWS
+// import API, { graphqlOperation } from "@aws-amplify/api";
+// import PubSub from "@aws-amplify/pubsub";
+
+// import { createTodo } from "./graphql/mutations";
+
+// //@ts-ignore
+// import awsmobile from "../aws-exports";
+
+// // Configure Amplify
+// API.configure(awsmobile);
+// PubSub.configure(awsmobile);
+
+// async function createNewTodo() {
+//   const todo = { name: "Use AWS AppSync", description: "Realtime and Offline" };
+//   await API.graphql(graphqlOperation(createTodo, { input: todo }));
+// }
 
 const Drawer = createDrawerNavigator();
 
@@ -31,8 +61,12 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName={HOME}>
         <Drawer.Screen name={HOME} component={HomeScreen} />
-        <Drawer.Screen name={PETICION_FORM} component={PeticionesForm} />
         <Drawer.Screen name={PETICIONES} component={Peticiones} />
+        <Drawer.Screen name={PETICION_FORM} component={PeticionesForm} />
+        <Drawer.Screen name={PRAYERS} component={Prayers} />
+        <Drawer.Screen name={LOGIN} component={Login} />
+        <Drawer.Screen name={SIGNUP} component={SignUp} />
+        <Drawer.Screen name={SINGLEPET} component={SinglePet} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

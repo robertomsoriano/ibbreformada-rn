@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { CustomHeader } from "../components/CustomHeader";
 // import openMap from "react-native-open-maps";
-import { PETICION_FORM, LAT_LONG, PETICIONES } from "../constants";
+import { PETICION_FORM, LAT_LONG, PETICIONES, MainBlue } from "../constants";
 
 const HomeScreen: FunctionComponent<any> = (props: any) => {
   return (
@@ -14,7 +14,7 @@ const HomeScreen: FunctionComponent<any> = (props: any) => {
       <View style={styles.mainView}>
         <View style={{ alignItems: "center" }}>
           <Image
-            source={require("../assets/images/book_svg.png")}
+            source={require("../../assets/images/book_svg.png")}
             style={{ width: 131, height: 102 }}
           />
           <Text style={{ fontSize: 18 }}>¡Bienvenido!</Text>
@@ -40,11 +40,13 @@ const HomeScreen: FunctionComponent<any> = (props: any) => {
           />
         </View>
         <TextAndButton
+          width={300}
           mainText="Direcciones"
           btnText="Abrir Mapa"
           func={true}
         />
         <TextAndButton
+          width={300}
           mainText="Ver lista de oración"
           btnText="Peticiones"
           goToScreen={PETICIONES}
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
 
 // Custom Components
 interface TBProps {
+  width?: number;
   mainText: string;
   btnText: string;
   linkTo?: string;
@@ -85,6 +88,7 @@ interface TBProps {
   func?: boolean;
 }
 export const TextAndButton = ({
+  width,
   mainText,
   btnText,
   linkTo,
@@ -126,11 +130,12 @@ export const TextAndButton = ({
       <Button
         block
         style={{
-          maxWidth: 120,
+          width: width || 120,
+          maxWidth: 300,
           margin: 6,
           alignSelf: "center",
           paddingHorizontal: 10,
-          backgroundColor: "#04396C",
+          backgroundColor: MainBlue,
           borderRadius: 5
         }}
         onPress={() => {
@@ -177,7 +182,7 @@ export const PlusButton = ({
           alignSelf: "center",
           paddingHorizontal: 16,
           margin: 6,
-          backgroundColor: "#04396C",
+          backgroundColor: MainBlue,
           borderRadius: 10,
           transform: [{ rotate: "45deg" }]
         }}

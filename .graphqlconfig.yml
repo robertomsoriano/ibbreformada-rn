@@ -1,0 +1,15 @@
+projects:
+  ibbr:
+    schemaPath: amplify/backend/api/ibbr/build/schema.graphql
+    includes:
+      - ''
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+extensions:
+  amplify:
+    version: 3

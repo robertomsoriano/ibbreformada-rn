@@ -15,6 +15,7 @@
     ],
     "splash": {
       "image": "./assets/images/load.png"
-    }
+    },
+    "description": ""
   }
 }

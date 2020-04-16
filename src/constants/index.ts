@@ -4,11 +4,10 @@ import { Platform, Linking, StyleSheet } from "react-native";
 export const HOME = `IBB Reformada`;
 export const PETICION_FORM = "Enviar Petición";
 export const PETICIONES = `Peticiones`;
-export const LAT_LONG = {
-  lat: 42.7041,
-  long: -71.1677
-};
-
+export const SINGLEPET = `Petición`;
+export const PRAYERS = `Pendientes`;
+export const LOGIN = `Login`;
+export const SIGNUP = `Sign up`;
 //Functions
 
 // Styles
@@ -19,3 +18,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+export const MainBlue = `#04396C`;
+// GraphQL
+export const SUBSCRIPTION = "SUBSCRIPTION";
+
+// Misc
+export const LAT_LONG = {
+  lat: 42.7041,
+  long: -71.1677
+};

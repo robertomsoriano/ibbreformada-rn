@@ -1,20 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { globalStyles } from "../constants";
-import { Container } from "native-base";
 import { CustomHeader } from "../components/CustomHeader";
+import { Container } from "native-base";
 
-const Peticiones = () => {
+const SinglePet = () => {
   return (
     <Container>
       <CustomHeader />
-      <View style={globalStyles.container}>
-        <Text>Peticiones</Text>
-      </View>
+      <Text>Single</Text>
     </Container>
   );
 };
 
-export default Peticiones;
+export default SinglePet;
 
 const styles = StyleSheet.create({});

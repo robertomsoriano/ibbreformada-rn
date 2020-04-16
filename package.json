@@ -9,11 +9,15 @@
     "postinstall": "cp node_modules/@expo/vector-icons/FontAwesome.js node_modules/@expo/vector-icons/Fontisto.js"
   },
   "dependencies": {
+    "@aws-amplify/api": "^3.1.6",
+    "@aws-amplify/pubsub": "^3.0.7",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "^0.1.7",
+    "@react-native-community/netinfo": "^5.7.0",
     "@react-navigation/drawer": "^5.4.0",
     "@react-navigation/native": "^5.1.4",
     "@use-expo/font": "^1.0.1",
+    "aws-amplify-react": "^4.1.6",
     "expo": "~37.0.3",
     "expo-font": "^8.1.0",
     "expo-updates": "~0.1.0",
@@ -22,7 +26,6 @@
     "react-dom": "~16.9.0",
     "react-native": "~0.61.4",
     "react-native-gesture-handler": "^1.6.1",
-    "react-native-open-maps": "^0.3.5",
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",

@@ -1,3 +1,7 @@
+// TODOS
+// input validation
+// input error msgs
+
 import React, { useState, FunctionComponent } from "react";
 import {
   Alert,
@@ -5,7 +9,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  TextInput
 } from "react-native";
 import {
   Container,
@@ -18,21 +23,38 @@ import {
   Textarea
 } from "native-base";
 // @ts-ignore
-import useForm from "../utils/useForm.js";
 import { CustomHeader } from "../components/CustomHeader";
 import { color } from "react-native-reanimated";
-
+// AWS
+import API, { graphqlOperation } from "@aws-amplify/api";
+// @ts-ignore
+import { createPrayer as CreatePrayer } from "../graphql/mutations";
 const PeticionesForm: FunctionComponent<any> = (props: any) => {
   //   console.log(props);
   const [modalVisible, setModalVisible] = useState(true);
-  const [formData, handleChange] = useForm({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
-  const handleSubmit = () => {
-    return;
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [content, setContent] = useState("");
+  const handleSubmit = async (
+    name: string,
+    phone: string,
+    email: string,
+    content: string
+  ) => {
+    console.log(name, phone, email, content);
+    let prayer = {
+      name,
+      phone,
+      email,
+      content
+    };
+    try {
+      await API.graphql(graphqlOperation(CreatePrayer, { input: prayer }));
+      console.log("item created!");
+    } catch (err) {
+      console.log("error creating talk...", err);
+    }
   };
   return (
     <Container>
@@ -45,21 +67,35 @@ const PeticionesForm: FunctionComponent<any> = (props: any) => {
               <Label style={styles.label}>Nombre</Label>
               <Input
                 style={styles.modalInput}
-                value={formData.name}
-                onChange={handleChange}
+                value={name}
+                onChangeText={e => setName(e)}
               />
             </Item>
             <Item stackedLabel style={styles.modalItem}>
               <Label style={styles.label}>Telefono</Label>
-              <Input style={styles.modalInput} placeholder="Opcional" />
+              <Input
+                style={styles.modalInput}
+                placeholder="Opcional"
+                value={phone}
+                onChangeText={e => setPhone(e)}
+              />
             </Item>
             <Item stackedLabel style={styles.modalItem}>
               <Label style={styles.label}>Email</Label>
-              <Input style={styles.modalInput} placeholder="Opcional" />
+              <Input
+                style={styles.modalInput}
+                placeholder="Opcional"
+                value={email}
+                onChangeText={e => setEmail(e)}
+              />
             </Item>
             <Item stackedLabel style={styles.modalItem}>
               <Label style={styles.label}>Petición</Label>
-              <Input style={{ height: 100, ...styles.modalInput }} />
+              <Input
+                style={{ height: 100, ...styles.modalInput }}
+                value={content}
+                onChangeText={e => setContent(e)}
+              />
             </Item>
           </Form>
         </Content>
@@ -74,7 +110,7 @@ const PeticionesForm: FunctionComponent<any> = (props: any) => {
             backgroundColor: "#04396C",
             borderRadius: 5
           }}
-          onPress={() => handleSubmit()}
+          onPress={() => handleSubmit(name, phone, email, content)}
         >
           <Text style={{ color: "white" }}>Enviar</Text>
         </Button>

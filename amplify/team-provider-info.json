@@ -1,0 +1,15 @@
+{
+    "ibbr": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-ibbr-ibbr-151153-authRole",
+            "UnauthRoleArn": "arn:aws:iam::287984529904:role/amplify-ibbr-ibbr-151153-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::287984529904:role/amplify-ibbr-ibbr-151153-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-ibbr-ibbr-151153-deployment",
+            "UnauthRoleName": "amplify-ibbr-ibbr-151153-unauthRole",
+            "StackName": "amplify-ibbr-ibbr-151153",
+            "StackId": "arn:aws:cloudformation:us-east-1:287984529904:stack/amplify-ibbr-ibbr-151153/2479e7e0-7b5f-11ea-bcb1-0ece9c9311f7",
+            "AmplifyAppId": "d5u8bej1cza2h"
+        }
+    }
+}

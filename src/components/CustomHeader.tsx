@@ -14,7 +14,7 @@ export const CustomHeader = () => {
       style={[
         {
           backgroundColor: "white",
-          height: 50,
+          height: 60,
           borderBottomColor: "#757575",
           alignItems: "center",
           alignContent: "center"
@@ -47,7 +47,14 @@ export const CustomHeader = () => {
           />
         )}
       </Left>
-      <Body style={{ flex: 1, alignItems: "center", alignContent: "center" }}>
+      <Body
+        style={{
+          flex: 1,
+          alignItems: "center",
+          alignContent: "center",
+          alignSelf: "center"
+        }}
+      >
         <Text
           style={{
             flex: 1,
