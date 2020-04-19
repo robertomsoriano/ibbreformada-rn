@@ -18,7 +18,7 @@ import {
 } from "native-base";
 import { CustomHeader } from "../components/CustomHeader";
 // AWS
-import API, { graphqlOperation } from "@aws-amplify/api";
+import { API, graphqlOperation } from "aws-amplify";
 // @ts-ignore
 import { listPrayers as ListPrayers } from "../graphql/queries";
 // import { useNavigation } from "@react-navigation/native";

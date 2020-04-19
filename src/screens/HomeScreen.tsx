@@ -12,7 +12,7 @@ const HomeScreen: FunctionComponent<any> = (props: any) => {
     <Container>
       <CustomHeader />
       <View style={styles.mainView}>
-        <View style={{ alignItems: "center" }}>
+        <View style={{ flex: 0.2, alignItems: "center" }}>
           <Image
             source={require("../../assets/images/book_svg.png")}
             style={{ width: 131, height: 102 }}
@@ -171,6 +171,7 @@ export const PlusButton = ({
       return;
     }
   };
+
   return (
     <View>
       <View style={{ alignItems: "center" }}>

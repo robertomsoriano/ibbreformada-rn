@@ -26,7 +26,7 @@ import {
 import { CustomHeader } from "../components/CustomHeader";
 import { color } from "react-native-reanimated";
 // AWS
-import API, { graphqlOperation } from "@aws-amplify/api";
+import { API, graphqlOperation } from "aws-amplify";
 // @ts-ignore
 import { createPrayer as CreatePrayer } from "../graphql/mutations";
 const PeticionesForm: FunctionComponent<any> = (props: any) => {

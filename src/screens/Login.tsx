@@ -1,3 +1,5 @@
+// TODO
+// FORGOT PASSWORD
 import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Container, Input, Grid, Col, Row, Button } from "native-base";
@@ -9,6 +11,8 @@ import { HOME, MainBlue, SIGNUP } from "../constants";
 import { globalStyles } from "../constants";
 import GenericHeader from "../components/GenericHeader";
 import { black } from "color-name";
+import { Auth } from "aws-amplify";
+import { FormInput } from "../components/FormInput";
 
 const Login = () => {
   const navigation: any = useNavigation();
@@ -16,14 +20,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
   const handleSubmit = async (email: string, passwd: string) => {
-    console.log(email, passwd);
-    let user = {
-      email,
-      passwd
-    };
     try {
-      //   await API.graphql(graphqlOperation(CreateUser, { input: user }));
-      console.log("item created!");
+      Auth.signIn({
+        username: email,
+        password: passwd
+      })
+        .then((data: any) => {
+          console.log(data);
+          navigation.navigate(HOME);
+        })
+        .catch((err: any) => console.log(err));
+      console.log("Signed in");
       //   TODO -- reset inputs
       (() => {
         setEmail("");
@@ -53,58 +60,41 @@ const Login = () => {
             </Row>
             <Row>
               <View style={{ flexDirection: "column", width: "100%" }}>
+                <FormInput
+                  inputName={`Email`}
+                  inputFunc={setEmail}
+                  inputValue={email}
+                  autoCapitalize={false}
+                />
+                <FormInput
+                  inputName={`Password`}
+                  inputFunc={setPasswd}
+                  inputValue={passwd}
+                  password={true}
+                />
                 <View
                   style={{
-                    height: 50,
-                    paddingVertical: 20
+                    alignSelf: "center",
+                    marginTop: 10
                   }}
                 >
-                  <View
-                    style={{
-                      height: 40,
-                      paddingHorizontal: 30
-                    }}
-                  >
-                    <Input
-                      placeholder={`Email`}
+                  <TouchableOpacity onPress={() => alert("Forgot pass")}>
+                    <Text
                       style={{
-                        borderBottomWidth: 1,
-                        borderBottomColor: "black"
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                        fontSize: 18,
+                        color: MainBlue
                       }}
-                      value={email}
-                      onChangeText={e => setEmail(e)}
-                    />
-                  </View>
-                </View>
-
-                <View
-                  style={{
-                    height: 50,
-                    paddingVertical: 20
-                  }}
-                >
-                  <View
-                    style={{
-                      height: 40,
-                      paddingHorizontal: 30
-                    }}
-                  >
-                    <Input
-                      placeholder={`Password`}
-                      secureTextEntry={true}
-                      style={{
-                        borderBottomWidth: 1,
-                        borderBottomColor: "black"
-                      }}
-                      value={passwd}
-                      onChangeText={e => setPasswd(e)}
-                    />
-                  </View>
+                    >
+                      Forgot password?
+                    </Text>
+                  </TouchableOpacity>
                 </View>
                 <View
                   style={{
                     alignSelf: "center",
-                    marginTop: 40
+                    marginTop: 60
                   }}
                 >
                   <Button
@@ -125,7 +115,7 @@ const Login = () => {
                 <View
                   style={{
                     alignSelf: "center",
-                    marginTop: 40
+                    marginTop: 100
                   }}
                 >
                   <Text>New to IBB Reformada?</Text>

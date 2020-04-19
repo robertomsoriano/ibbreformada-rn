@@ -10,6 +10,9 @@ import { globalStyles } from "../constants";
 import GenericHeader from "../components/GenericHeader";
 import { black } from "color-name";
 
+import { Auth } from "aws-amplify";
+import { FormInput } from "../components/FormInput";
+
 const SignUp = () => {
   const navigation: any = useNavigation();
   const navigationState: any = useNavigationState(state => state);
@@ -36,8 +39,22 @@ const SignUp = () => {
       confirmPass
     };
     try {
-      //   await API.graphql(graphqlOperation(CreateUser, { input: user }));
-      console.log("item created!");
+      Auth.signUp({
+        username: email,
+        password: passwd,
+        attributes: {
+          email,
+          "custom:fname": fname,
+          "custom:lname": lname
+        },
+        validationData: [] //optional
+      })
+        .then((data: any) => {
+          console.log(data);
+          navigation.navigate(HOME);
+        })
+        .catch((err: any) => console.log(err));
+      console.log("Sign Up");
       //   TODO -- reset inputs
       (() => {
         setFname("");
@@ -51,6 +68,7 @@ const SignUp = () => {
       console.log("error creating talk...", err);
     }
   };
+
   return (
     <>
       <GenericHeader />
@@ -85,13 +103,13 @@ const SignUp = () => {
                   inputName={`Email`}
                   inputFunc={setEmail}
                   inputValue={email}
+                  autoCapitalize={false}
                 />
-                <FormInput
+                {/* <FormInput
                   inputName={`Phone Number`}
                   inputFunc={setPhone}
                   inputValue={phone}
-                  password={true}
-                />
+                /> */}
 
                 <FormInput
                   inputName={`Password`}
@@ -181,43 +199,3 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
-interface FormInputProps {
-  inputName: string;
-  inputValue: string;
-  inputFunc: (value: React.SetStateAction<string>) => void;
-  password?: boolean;
-}
-
-export const FormInput = ({
-  inputName,
-  inputValue,
-  inputFunc,
-  password
-}: FormInputProps) => {
-  return (
-    <View
-      style={{
-        height: 60,
-        paddingVertical: 20
-      }}
-    >
-      <View
-        style={{
-          height: 40,
-          paddingHorizontal: 30
-        }}
-      >
-        <Input
-          placeholder={inputName}
-          style={{
-            borderBottomWidth: 1,
-            borderBottomColor: "black"
-          }}
-          value={inputValue}
-          onChangeText={e => inputFunc(e)}
-          secureTextEntry={password ? true : false}
-        />
-      </View>
-    </View>
-  );
-};

@@ -25,28 +25,21 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import SinglePet from "./screens/SinglePet";
 import Prayers from "./screens/Prayers";
-
-// // AWS
-// import API, { graphqlOperation } from "@aws-amplify/api";
-// import PubSub from "@aws-amplify/pubsub";
-
-// import { createTodo } from "./graphql/mutations";
-
-// //@ts-ignore
-// import awsmobile from "../aws-exports";
-
-// // Configure Amplify
-// API.configure(awsmobile);
-// PubSub.configure(awsmobile);
-
-// async function createNewTodo() {
-//   const todo = { name: "Use AWS AppSync", description: "Realtime and Offline" };
-//   await API.graphql(graphqlOperation(createTodo, { input: todo }));
-// }
+import { AuthProvider, useAuthState } from "./store/AuthContext";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+  return (
+    <AuthProvider>
+      <Index />
+    </AuthProvider>
+  );
+}
+
+export const Index = () => {
+  const state = useAuthState();
+  // console.log(state);
   let [fontsLoaded] = useFonts({
     Roboto: require("native-base/Fonts/Roboto.ttf"),
     Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
@@ -56,21 +49,30 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-
-  return (
+  //@ts-ignore
+  return !state.user ? (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName={HOME}>
         <Drawer.Screen name={HOME} component={HomeScreen} />
         <Drawer.Screen name={PETICIONES} component={Peticiones} />
         <Drawer.Screen name={PETICION_FORM} component={PeticionesForm} />
-        <Drawer.Screen name={PRAYERS} component={Prayers} />
-        <Drawer.Screen name={LOGIN} component={Login} />
-        <Drawer.Screen name={SIGNUP} component={SignUp} />
         <Drawer.Screen name={SINGLEPET} component={SinglePet} />
       </Drawer.Navigator>
     </NavigationContainer>
+  ) : (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName={Login}>
+        {/* <Drawer.Screen name={HOME} component={HomeScreen} />
+        <Drawer.Screen name={PETICIONES} component={Peticiones} />
+        <Drawer.Screen name={PETICION_FORM} component={PeticionesForm} />
+        <Drawer.Screen name={PRAYERS} component={Prayers} /> */}
+        <Drawer.Screen name={LOGIN} component={Login} />
+        <Drawer.Screen name={SIGNUP} component={SignUp} />
+        {/* <Drawer.Screen name={SINGLEPET} component={SinglePet} /> */}
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

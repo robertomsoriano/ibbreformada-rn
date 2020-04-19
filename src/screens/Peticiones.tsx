@@ -18,8 +18,7 @@ import {
 } from "native-base";
 import { CustomHeader } from "../components/CustomHeader";
 // AWS
-import API, { graphqlOperation } from "@aws-amplify/api";
-// import query definition
+import { API, graphqlOperation } from "aws-amplify";
 // @ts-ignore
 import { listTodos as ListTodos } from "../graphql/queries";
 // import { useNavigation } from "@react-navigation/native";
@@ -32,7 +31,7 @@ const Peticiones = () => {
     const getData = async () => {
       try {
         const Data = await API.graphql(graphqlOperation(ListTodos));
-        console.log(Data);
+        // console.log(Data);
         items = await transformData(Data, categories);
         setState({ items });
       } catch (err) {
